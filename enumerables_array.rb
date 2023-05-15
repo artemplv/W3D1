@@ -70,6 +70,32 @@ class Array
 
 end
 
-a = [1, 2, 3]
-p a.my_reject { |num| num > 1 } # => [1]
-p a.my_reject { |num| num == 4 } # => [1, 2, 3]
+# a = [1, 2, 3]
+# p a.my_reject { |num| num > 1 } # => [1]
+# p a.my_reject { |num| num == 4 } # => [1, 2, 3]
+
+class Array
+    def my_any?(&prc)
+        self.each do |item|
+           if prc.call(item)
+                return true
+           end
+        end
+        false
+    end
+
+    def my_all?(&prc)
+        self.each do |item|
+            if !prc.call(item)
+                return false
+            end
+        end
+        true
+    end
+end
+
+# a = [1, 2, 3]
+# p a.my_any? { |num| num > 1 } # => true
+# p a.my_any? { |num| num == 4 } # => false
+# p a.my_all? { |num| num > 1 } # => false
+# p a.my_all? { |num| num < 4 } # => true
