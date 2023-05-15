@@ -41,6 +41,7 @@ end
 # Example:
 
 class Array
+
     def my_select(&prc)
         result = []
         self.my_each do |item|
@@ -50,14 +51,14 @@ class Array
         end
         result
     end
-end
+
 
 # a = [1, 2, 3]
 # p a.my_select { |num| num > 1 } # => [2, 3]
 # p a.my_select { |num| num == 4 } # => []
 
 
-class Array
+
     def my_reject(&prc)
         result = []
         self.my_each do |item|
@@ -68,13 +69,13 @@ class Array
         result
     end
 
-end
+
 
 # a = [1, 2, 3]
 # p a.my_reject { |num| num > 1 } # => [1]
 # p a.my_reject { |num| num == 4 } # => [1, 2, 3]
 
-class Array
+
     def my_any?(&prc)
         self.each do |item|
            if prc.call(item)
@@ -92,7 +93,7 @@ class Array
         end
         true
     end
-end
+
 
 # a = [1, 2, 3]
 # p a.my_any? { |num| num > 1 } # => true
@@ -100,24 +101,7 @@ end
 # p a.my_all? { |num| num > 1 } # => false
 # p a.my_all? { |num| num < 4 } # => true
 
-# def flatten(array)
-#     array.inject([]) do |acc, ele| 
-#         if ele.is_a?(Array)
-#             acc.push(*flatten(ele))
-#         else acc.push(ele)
-#         end
-#         acc
-#     end
-   
-# end
 
-# class Array
-#     def my_flatten
-#         flatten(self)
-#     end
-# end
-
-class Array
     def my_flatten
         result = []
         self.each do |ele|
@@ -129,7 +113,7 @@ class Array
         end
         result
     end
-end
+
 
 #  array = [1, 2, 3, [4, [5, 6]], [[[7]], 8]]
 #  p flatten(array)
@@ -137,7 +121,7 @@ end
 # p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
 #
 
-class Array
+
     def my_zip(*array)
         result = Array.new(self.length) { |i| Array.new }
 
@@ -153,7 +137,7 @@ class Array
 
         result
     end
-end
+
 
 # a = [ 4, 5, 6 ]
 # b = [ 7, 8, 9 ]
@@ -165,7 +149,7 @@ end
 # d = [13, 14, 15]
 # p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
 
-class Array
+
     def my_rotate(num=1)
         result = []
         num = num % self.length
@@ -180,7 +164,7 @@ class Array
 
     end
 
-end
+
 
 
 # a = [ "a", "b", "c", "d" ]
@@ -189,7 +173,7 @@ end
 # p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
 # p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
 
-class Array
+
     def my_join(joiner = '')
         result = ''
         self.each_with_index do |char, i|
@@ -201,13 +185,12 @@ class Array
         end
         result
     end
-end
+
 
 # a = [ "a", "b", "c", "d" ]
 # p a.my_join         # => "abcd"
 # p a.my_join("$")    # => "a$b$c$d"
-
-class Array
+    
     def my_reverse
         result = []
         i = self.length - 1
@@ -217,8 +200,8 @@ class Array
         end
         result
     end
-
 end
+
 
 # p [ "a", "b", "c" ].my_reverse   #=> ["c", "b", "a"]
 # p [ 1 ].my_reverse               #=> [1]
