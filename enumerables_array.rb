@@ -118,17 +118,16 @@ end
 # end
 
 class Array
-    def my_flatten(array=nil)
-        array ||= self
-        if !array.is_a?(Array)
-            return [array]
-        end
+    def my_flatten
         result = []
-        array.each do |ele|
-            result += my_flatten(ele)
+        self.each do |ele|
+            if !ele.is_a?(Array)
+                result << ele
+            else
+                result += ele.my_flatten
+            end
         end
         result
-
     end
 end
 
