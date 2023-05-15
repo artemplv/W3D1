@@ -55,3 +55,21 @@ end
 # a = [1, 2, 3]
 # p a.my_select { |num| num > 1 } # => [2, 3]
 # p a.my_select { |num| num == 4 } # => []
+
+
+class Array
+    def my_reject(&prc)
+        result = []
+        self.my_each do |item|
+            if !prc.call(item)
+                result << item
+            end
+        end
+        result
+    end
+
+end
+
+a = [1, 2, 3]
+p a.my_reject { |num| num > 1 } # => [1]
+p a.my_reject { |num| num == 4 } # => [1, 2, 3]
