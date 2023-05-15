@@ -99,3 +99,41 @@ end
 # p a.my_any? { |num| num == 4 } # => false
 # p a.my_all? { |num| num > 1 } # => false
 # p a.my_all? { |num| num < 4 } # => true
+
+# def flatten(array)
+#     array.inject([]) do |acc, ele| 
+#         if ele.is_a?(Array)
+#             acc.push(*flatten(ele))
+#         else acc.push(ele)
+#         end
+#         acc
+#     end
+   
+# end
+
+# class Array
+#     def my_flatten
+#         flatten(self)
+#     end
+# end
+
+class Array
+    def my_flatten(array=nil)
+        array ||= self
+        if !array.is_a?(Array)
+            return [array]
+        end
+        result = []
+        array.each do |ele|
+            result += my_flatten(ele)
+        end
+        result
+
+    end
+end
+
+#  array = [1, 2, 3, [4, [5, 6]], [[[7]], 8]]
+#  p flatten(array)
+
+p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
+#
