@@ -134,5 +134,33 @@ end
 #  array = [1, 2, 3, [4, [5, 6]], [[[7]], 8]]
 #  p flatten(array)
 
-p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
+# p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
 #
+
+class Array
+    def my_zip(*array)
+        result = Array.new(self.length) { |i| Array.new }
+
+        (0...result.length).each do |i|
+            result[i] << self[i]
+        end
+
+        (0...array.length).each do |i|
+            (0...self.length).each do |j|
+                result[j] << array[i][j]
+            end
+        end
+
+        result
+    end
+end
+
+# a = [ 4, 5, 6 ]
+# b = [ 7, 8, 9 ]
+# p [1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+# p a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
+# p [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
+
+# c = [10, 11, 12]
+# d = [13, 14, 15]
+# p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
