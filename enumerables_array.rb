@@ -164,3 +164,27 @@ end
 # c = [10, 11, 12]
 # d = [13, 14, 15]
 # p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
+
+class Array
+    def my_rotate(num=1)
+        result = []
+        num = num % self.length
+        (num...self.length).each do |idx|
+                result << self[idx]
+        end
+
+        (0...num).each do |idx|
+                result << self[idx]
+        end
+        result
+
+    end
+
+end
+
+
+a = [ "a", "b", "c", "d" ]
+p a.my_rotate         #=> ["b", "c", "d", "a"]
+p a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
